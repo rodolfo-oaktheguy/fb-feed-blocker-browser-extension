@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Feed Scroll Blocker</title>
+<style>
+  :root { --bg:#f6f7fb; --card:#fff; --ink:#1c1e21; --muted:#65676b; --line:#e4e6eb; --accent:#4f46e5; --red:#d93838; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font: 14px system-ui, -apple-system, Segoe UI, sans-serif; min-width: 340px; }
+  main { max-width: 560px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 20px; margin: 4px 0 2px; }
+  p.sub { color: var(--muted); margin: 0 0 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 10px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  label.site { display:flex; align-items:center; gap:8px; border:1px solid var(--line); border-radius:8px; padding:9px 10px; cursor:pointer; }
+  label.site input { accent-color: var(--accent); width:16px; height:16px; }
+  .strict { display:flex; justify-content:space-between; align-items:center; gap:12px; border-color:#f3c6c6; background:#fff6f6; }
+  .strict small { display:block; color: var(--muted); margin-top:3px; }
+  .switch { position:relative; width:42px; height:24px; flex:none; }
+  .switch input { opacity:0; width:0; height:0; }
+  .switch span { position:absolute; inset:0; background:#ccd0d5; border-radius:24px; transition:.2s; cursor:pointer; }
+  .switch span::before { content:""; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s; }
+  .switch input:checked + span { background: var(--red); }
+  .switch input:checked + span::before { transform: translateX(18px); }
+  button { width:100%; border:0; border-radius:8px; padding:11px; font-weight:600; font-size:14px; cursor:pointer; }
+  .primary { background: var(--accent); color:#fff; }
+  .ghost { background:#eef0f4; color: var(--ink); margin-top:8px; }
+  .ghost:disabled { opacity:.5; cursor:not-allowed; }
+  .total { font-size: 34px; font-weight: 800; color:#16a34a; line-height:1; }
+  .stats { display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-top:10px; }
+  .stats div { display:flex; justify-content:space-between; border:1px solid var(--line); border-radius:8px; padding:7px 10px; }
+  .status { color: var(--muted); font-size: 12px; margin-top: 8px; text-align:center; min-height: 16px; }
+  .row { display:flex; justify-content:space-between; align-items:center; }
+  .link { background:none; border:0; color: var(--red); width:auto; padding:0; font-size:12px; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#18191a; --card:#242526; --ink:#e4e6eb; --muted:#b0b3b8; --line:#3a3b3c; }
+    .strict { background:#2d2020; border-color:#5a3030; }
+    .ghost { background:#3a3b3c; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Feed Scroll Blocker</h1>
+  <p class="sub">Pick the feeds where scrolling is blocked. Messages always stay usable.</p>
+
+  <section class="card">
+    <h2>Block scrolling on</h2>
+    <div class="grid" id="sites"></div>
+  </section>
+
+  <section class="card strict">
+    <div>
+      <strong>Strict Mode</strong>
+      <small>No pausing. To scroll again you have to turn a site off here.</small>
+    </div>
+    <label class="switch"><input type="checkbox" id="strict"><span></span></label>
+  </section>
+
+  <section class="card">
+    <button class="primary" id="save">Save Settings</button>
+    <button class="ghost" id="pause">Allow scrolling for 5 minutes</button>
+    <div class="status" id="status"></div>
+  </section>
+
+  <section class="card">
+    <div class="row"><h2>Blocked scroll attempts</h2><button class="link" id="reset">Reset</button></div>
+    <div class="total" id="total">0</div>
+    <div class="stats" id="stats"></div>
+  </section>
+</main>
+<script src="sites.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "FB Feed Scroll Blocker",
+  "version": "2.0",
+  "description": "Blocks feed scrolling on Facebook and other social sites. Messages stay scrollable.",
+  "permissions": ["storage"],
+  "action": { "default_popup": "popup.html", "default_title": "Feed Scroll Blocker" },
+  "options_page": "popup.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://*.instagram.com/*",
+        "*://*.x.com/*", "*://*.twitter.com/*",
+        "*://*.reddit.com/*",
+        "*://*.linkedin.com/*",
+        "*://*.tiktok.com/*",
+        "*://*.youtube.com/*"
+      ],
+      "js": ["sites.js", "content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
+}

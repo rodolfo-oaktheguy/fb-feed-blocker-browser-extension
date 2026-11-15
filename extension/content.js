@@ -63,6 +63,14 @@
     block(e);
   }, { capture: true });
 
+  // ---- middle-click autoscroll (the browser scrolls on its own, no wheel events) ----
+  // Middle-click on a link still opens it in a new tab.
+  window.addEventListener("mousedown", (e) => {
+    if (e.button !== 1 || !active || insideAllowed(e.target)) return;
+    if (e.target instanceof Element && e.target.closest("a[href]")) return;
+    block(e);
+  }, { capture: true, passive: false });
+
   // ---- anything that still scrolls (scrollbar drag, page scripts) snaps back ----
   const limit = () => Math.round(window.innerHeight * 0.6); // the top part of the page stays usable
   document.addEventListener("scroll", (e) => {

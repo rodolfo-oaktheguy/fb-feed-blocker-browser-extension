@@ -6,7 +6,7 @@ Most feed blockers block all of Facebook, which also kills Messages. This one bl
 
 ## Features
 
-- Blocks feed scrolling on Facebook: mouse wheel, touchpad, keyboard (Space, arrows, Page Down, End), touch, and scrollbar dragging
+- Blocks feed scrolling on Facebook: mouse wheel, touchpad, keyboard (Space, arrows, Page Down, End), touch, middle-click autoscroll, and scrollbar dragging
 - Keeps `/messages` (including `/messages/t/...`) and Messenger chat popups scrollable
 - The top of the page stays usable, so you can still post and check notifications
 - Optional blocking for Instagram, Twitter (X), Reddit, LinkedIn, TikTok and YouTube Shorts, each with its own messages allow-list

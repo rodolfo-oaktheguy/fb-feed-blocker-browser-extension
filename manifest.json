@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "FB Feed Scroll Blocker",
+  "version": "1.0",
+  "description": "Removes the scroll bar and scrolling on facebook.com, except on Messages (/messages).",
+  "content_scripts": [
+    {
+      "matches": ["*://www.facebook.com/*", "*://web.facebook.com/*", "*://m.facebook.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
